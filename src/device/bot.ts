@@ -447,7 +447,7 @@ export class Bot {
     // BLEmode (true if Switch Mode) | (false if Press Mode)
     if (this.botMode === 'switch') {
       if (this.BLE_Mode) {
-        this.On = Boolean(this.BLE_On);
+        this.On = !this.BLE_On;
       }
       this.accessory.context.On = this.On;
       this.debugLog(`${this.device.deviceType}: ${this.accessory.displayName} Switch Mode, mode: ${this.BLE_Mode}, On: ${this.On}`);
