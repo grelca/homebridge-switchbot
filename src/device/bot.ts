@@ -445,11 +445,11 @@ export class Bot {
   async BLEparseStatus(): Promise<void> {
     this.debugLog(`${this.device.deviceType}: ${this.accessory.displayName} BLEparseStatus`);
     // BLEmode (true if Switch Mode) | (false if Press Mode)
-    if (this.BLE_Mode) {
-      this.accessory.context.On = this.On;
-      if (this.On === undefined) {
-        this.On = Boolean(this.BLE_On);
+    if (this.botMode === 'switch') {
+      if (this.BLE_Mode) {
+        this.On = !this.BLE_On;
       }
+      this.accessory.context.On = this.On;
       this.debugLog(`${this.device.deviceType}: ${this.accessory.displayName} Switch Mode, mode: ${this.BLE_Mode}, On: ${this.On}`);
     } else {
       this.On = false;
